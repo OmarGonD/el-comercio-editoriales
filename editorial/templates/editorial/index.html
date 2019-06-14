@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block metadescription %}
+{% if category %}
+{{ category.description|truncatewords:155 }}
+{% else %}
+¡Bienvenidos a Stickers Gallito Perú!
+{% endif %}
+{% endblock %}
+{% block title %}
+{% if category %}
+{{ category.name }}
+{% else %}
+Stickers personalizados y más
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container-fluid margin-top10 margin-bottom5">
+
+  <div class="container">
+
+    <div class="row margin-bottom5">
+      <div class="col-md-12">
+        <h1>Editorial del día</h1>
+        <h2>{{ todays_editorial.title }}</h2>
+        <p>{{ todays_editorial.date }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      {% for editorial in editorials %}
+         <div class="col-sm-6 margin-bottom2">
+              <div class="card">
+                  <div class="card-body">
+                      
+                     <h5 class="card-title">{{ editorial.title }}</h5>
+                     <span class="card-text"><i>{{ editorial.date }}</i></span>
+                      <div class="margin-bottom5">
+                        <p class="card-text">{{ editorial.body }}</p>
+                        <img src="{{ editorial.image }}">
+                      </div>
+                      
+                      <a href="{{ editorial.url }}" class="btn btn-primary">ver editorial</a>
+                   </div>
+               </div>
+          </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}
