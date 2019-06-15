@@ -27,6 +27,8 @@ def today_editorial(request):
 
     texto = soup.find('p', class_='flow-summary').getText().strip()
 
+    tz = pytz.timezone('America/Bogota')
+    
     fecha = soup.find('time')['datetime']
     fecha = time.localtime(int(fecha))
     fecha = datetime.fromtimestamp(mktime(fecha)).date()
@@ -36,10 +38,10 @@ def today_editorial(request):
     full_url = "https://elcomercio.pe" + enlace['href']
 
     # today_date = datetime.now().date().strftime('%d %b %Y')
-    today_date = datetime.now('America/Bogota').date()
+    today_date = datetime.now(tz).date()
     
     try:
-        todays_editorial = Editorial.objects.get(date = datetime.now('America/Bogota').date())
+        todays_editorial = Editorial.objects.get(date = datetime.now(tz).date())
         print("Se obtuvo la editorial de la BD")
     except:    
         todays_editorial = Editorial.objects.create(
