@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from .models import Editorial
 from django.shortcuts import render, redirect
 from time import mktime
+import pytz
 
 def home(request):
     return HttpResponse("¡Hola!")
