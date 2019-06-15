@@ -36,10 +36,10 @@ def today_editorial(request):
     full_url = "https://elcomercio.pe" + enlace['href']
 
     # today_date = datetime.now().date().strftime('%d %b %Y')
-    today_date = datetime.now().date()
+    today_date = datetime.now('America/Bogota').date()
     
     try:
-        todays_editorial = Editorial.objects.get(date = datetime.now().date())
+        todays_editorial = Editorial.objects.get(date = datetime.now('America/Bogota').date())
         print("Se obtuvo la editorial de la BD")
     except:    
         todays_editorial = Editorial.objects.create(
@@ -50,11 +50,6 @@ def today_editorial(request):
             image = imagen
         )
 
-
-
     editorials = Editorial.objects.all().order_by('-id') 
-    print("FECHA")
-    print(fecha)   
-    print("TODAYS DATE")
-    print(today_date)
+    
     return render(request, 'editorial/index.html', {'editorials': editorials, 'todays_editorial': todays_editorial, 'full_url': full_url})
