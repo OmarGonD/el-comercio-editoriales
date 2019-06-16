@@ -42,9 +42,9 @@ class Command(BaseCommand):
         today_date = datetime.now(tz).date()
         
         try:
-            todays_editorial = Editorial.objects.get(date = datetime.now(tz).date())
+            today_editorial = Editorial.objects.get(date = datetime.now(tz).date())
         except:    
-            todays_editorial = Editorial.objects.create(
+            today_editorial = Editorial.objects.create(
                 date = fecha,
                 title = titulo,
                 body = texto,

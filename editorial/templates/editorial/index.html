@@ -25,9 +25,16 @@ Stickers personalizados y más
 
     <div class="row margin-bottom5">
       <div class="col-md-12">
-        <h1>Editorial del día</h1>
-        <h2>{{ todays_editorial.title }}</h2>
-        <p>{{ todays_editorial.date }}</p>
+        {% if today_editorial %}
+          <h1>Editorial del día</h1>
+          <h2>{{ today_editorial.title }}</h2>
+          <p>{{ today_editorial.date }}</p>
+        {% elif yesterday_editorial %}
+          <h1>Editorial de ayer</h1>
+          <p>Parece que el editorial <b>de hoy</b> aún no ha sido publicado.</p>
+          <h2>{{ yesterday_editorial.title }}</h2>
+          <p>{{ yesterday_editorial.date }}</p>
+        {% endif %}  
       </div>
     </div>
 
